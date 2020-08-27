@@ -1,0 +1,60 @@
+version: '2.1'
+
+services:
+  mariadb:
+    image: mariadb
+    container_name: 'wp2-mysql'
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123Qwe123
+      MYSQL_DATABASE: wp2
+      MYSQL_USER: wp2
+      MYSQL_PASSWORD: 123Qwe123
+
+  php:
+    build: ./images/php
+    container_name: 'wp2-php'
+    restart: always
+    depends_on:
+      - mariadb
+    environment:
+      DB_HOST: wp2-mysql
+      DB_PASS: 123Qwe123
+      DB_NAME: wp2
+      DB_USER: wp2
+    links:
+      - mariadb
+    volumes:
+      - ./www:/var/www
+
+  nginx:
+    image: nginx
+    container_name: 'wp2-nginx'
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - mariadb
+      - php
+    volumes:
+      - ./hosts:/etc/nginx/conf.d
+      - ./www:/var/www
+      - ./logs:/var/log/nginx
+    links:
+      - php
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    links:
+      - mariadb:mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 123Qwe123
+      PMA_HOST: mariadb
