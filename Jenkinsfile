@@ -19,7 +19,8 @@ pipeline {
 }
 
 def k(){
-    def ftpClient = new FTPClient()
+    println new Date()
+  /*  def ftpClient = new FTPClient()
     ftpClient.connect('ftp.uadreams.com')
     ftpClient.login("admin", "Bjb4xgbBb07bhZtb")
 
@@ -29,5 +30,5 @@ def k(){
       }
 
     ftpClient.logout()
-    ftpClient.disconnect()
+    ftpClient.disconnect()*/
 }
