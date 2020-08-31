@@ -34,7 +34,7 @@ def f(){
 def k(){
     def ftpClient = new FTPClient()
     ftpClient.connect('ftp.uadreams.com')
-    ftpClient.login("wpuser", "Bjb4xgbBb07bhZtb")
+    ftpClient.login("admin", "Bjb4xgbBb07bhZtb")
 
     def files = [ftpClient.listFiles()]
       if (files) {
