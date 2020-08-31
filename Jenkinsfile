@@ -22,6 +22,7 @@ def k(){
    // println new Date()
     def ftpClient = new FTPClient()
     ftpClient.connect('ftp.uadreams.com')
+    ftpClient.enterLocalPassiveMode()
     ftpClient.login("admin", "Bjb4xgbBb07bhZtb")
 
     def files = [ftpClient.listFiles()]
