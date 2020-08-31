@@ -18,19 +18,6 @@ pipeline {
     }
 }
 
-/*
-def f(){
-    def ftpClient = new FTPClient()
-        ftpClient.connect("ftp server address here")
-        ftpClient.enterLocalPassiveMode()
-        println(ftpClient.replyString)
-        ftpClient.login("username","password")
-        println(ftpClient.replyString)
-        
-}*/
-//def f(){
-//echo "${params.Greeting} World second!"
-//}
 def k(){
     def ftpClient = new FTPClient()
     ftpClient.connect('ftp.uadreams.com')
