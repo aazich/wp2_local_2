@@ -12,7 +12,7 @@ pipeline {
         stage('Example') {
             steps {
                 //echo "${params.Greeting} World!"
-                f()
+                k()
             }
         }
     }
