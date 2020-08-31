@@ -18,19 +18,29 @@ pipeline {
     }
 }
 
-
-//def f(){
-//     def ftpClient = new FTPClient()
- //        ftpClient.connect("ftp server address here")
- //        ftpClient.enterLocalPassiveMode()
- //        println(ftpClient.replyString)
- //        ftpClient.login("username","password")
- //        println(ftpClient.replyString)
-  //       ftpClient.changeWorkingDirectory("directory the file is in")
-   //      println(ftpClient.replyString)
- //        ftpClient.fileType=(FTPClient.BINARY_FILE_TYPE)
-  //       println(ftpClient.replyString)
-//}
+/*
 def f(){
-echo "${params.Greeting} World second!"
+    def ftpClient = new FTPClient()
+        ftpClient.connect("ftp server address here")
+        ftpClient.enterLocalPassiveMode()
+        println(ftpClient.replyString)
+        ftpClient.login("username","password")
+        println(ftpClient.replyString)
+        
+}*/
+//def f(){
+//echo "${params.Greeting} World second!"
+//}
+def k(){
+    def ftpClient = new FTPClient()
+    ftpClient.connect('ftp.uadreams.com')
+    ftpClient.login("wpuser", "Bjb4xgbBb07bhZtb")
+
+    def files = [ftpClient.listFiles()]
+      if (files) {
+           println(file.getName())
+      }
+
+    ftpClient.logout()
+    ftpClient.disconnect()
 }
