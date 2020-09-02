@@ -12,24 +12,17 @@ pipeline {
         stage('Example') {
             steps {
                 //echo "${params.Greeting} World!"
-                k()
+                //k()
+                def ping_test()
             }
         }
     }
 }
 
 def k(){
-    println new Date()
-   /* def ftpClient = new FTPClient()
-    ftpClient.connect('ftp.uadreams.com')
-    ftpClient.enterLocalPassiveMode()
-    ftpClient.login("", "")
+    println new Date()   
+}
 
-    def files = [ftpClient.listFiles()]
-      if (files) {
-           println(file.getName())
-      }
-
-    ftpClient.logout()
-    ftpClient.disconnect()*/
+def ping_test() {
+    nc -zv ftp.uadreams.com 21
 }
