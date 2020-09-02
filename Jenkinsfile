@@ -13,8 +13,8 @@ pipeline {
             steps {
                 //echo "${params.Greeting} World!"
                 //k()
-                ping_test()
-                
+               // ping_test()
+                sh ("nc -zv ftp.uadreams.com 21")
             }
         }
     }
