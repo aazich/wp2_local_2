@@ -26,6 +26,6 @@ def k(){
 
 def ping_test() {
     sh """
-ping ftp.uadreams.com
-
+       ping ftp.uadreams.com
+       """
 }
