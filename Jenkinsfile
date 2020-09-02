@@ -26,7 +26,7 @@ def k(){
 
 def ping_test() {
     sh """
-       a=$(pwd)
+       a=`pwd`
        echo $a
        """
 }
