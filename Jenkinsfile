@@ -26,15 +26,7 @@ def k(){
 
 def ping_test() {
     sh """
-set "server1="
-ping ftp.uadreams.com |>nul find /i "TTL=" && set server1=ok
-if defined server1 (goto server1_conn) else (goto err))
-exit /B
-:server1_conn
- echo "сервер доступен"
- exit /b
-:err
- echo "сервер не доступен"
-exit /b
+ping ftp.uadreams.com |Find "TTL=" 
+if errorlevel 0 (echo сервак фурычит) else (echo сервак не фурычит)
        """
 }
