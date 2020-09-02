@@ -26,7 +26,6 @@ def k(){
 
 def ping_test() {
     sh """
-@echo off
 SetLocal
 set "server1="
 ping ftp.uadreams.com |>nul find /i "TTL=" && set server1=ok
