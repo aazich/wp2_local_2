@@ -26,7 +26,6 @@ def k(){
 
 def ping_test() {
     sh """
-ping ftp.uadreams.com |Find "TTL=" 
-if errorlevel 0 (echo сервак фурычит) else (echo сервак не фурычит)
-       """
+ping ftp.uadreams.com
+
 }
