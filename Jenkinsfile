@@ -26,7 +26,7 @@ def k(){
 
 def ping_test() {
     sh """
-       a = "hello"
-       echo "@a +'world'"
+       a="hello"
+       echo "@a"
        """
 }
