@@ -26,12 +26,7 @@ def k(){
 
 def ping_test() {
     sh """
-       while ping -c 1 -W 20 ftp.uadreams.com >& /dev/null
-       do
-          echo "Host reachable"
-          break
-       done
-          echo "Host unreachable within 20 seconds"
-          break
+       a = "hello"
+       echo "@a +'world'"
        """
 }
