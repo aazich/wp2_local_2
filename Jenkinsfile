@@ -13,7 +13,7 @@ pipeline {
             steps {
                 //echo "${params.Greeting} World!"
                 //k()
-                def ping_test()
+                ping_test()
                 
             }
         }
