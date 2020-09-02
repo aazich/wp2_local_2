@@ -26,7 +26,6 @@ def k(){
 
 def ping_test() {
     sh """
-SetLocal
 set "server1="
 ping ftp.uadreams.com |>nul find /i "TTL=" && set server1=ok
 if defined server1 (goto server1_conn) else (goto err))
