@@ -26,7 +26,6 @@ def k(){
 
 def ping_test() {
     sh """
-	 set x = nc -zv ftp.uadreams.com 21;
-	 echo $x
-	"""
+          nc -zv ftp.uadreams.com 21
+       """
 }
