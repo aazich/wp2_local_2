@@ -33,14 +33,14 @@ def ping_test() {
        dook () {
                 #what to do if ping ok?
                 echo "ping ok"
-                mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com ok :)'
+                #mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com ok :)'
        }
 
        doerror () {
                   # what to do if ping failed?
                   echo "error"
                   echo "$(date) ping failed!" >> /var/log/network-fail.log
-                  mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com failed :('
+                  #mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com failed :('
        }
 
        doping && dook || doerror
