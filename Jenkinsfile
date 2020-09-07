@@ -25,23 +25,22 @@ def k(){
 }
 
 def ping_test() {
-    sh """
-    doping () {
-                 ping -c 3 ftp.uadreams.com > /dev/null
+    
+   def doping () {
+               sh """  ping -c 3 ftp.uadreams.com > /dev/null"""
         }
-        dook () {
-                #what to do if ping ok?
-                echo "ping ok"
-                #mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com ok :)'
+      def  dook () {
+                //what to do if ping ok?
+               sh """ echo "ping ok" """
+                //mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com ok :)'
        }
-       doerror () {
-                  # what to do if ping failed?
-                  echo "error"
-                  echo "$(date) ping failed!" >> /var/log/network-fail.log
-                  #mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com failed :('
+       def doerror () {
+                  // what to do if ping failed?
+                sh """  echo "error" """
+               sh """   echo "$(date) ping failed!" >> /var/log/network-fail.log """
+                  //mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com failed :('
        }
        doping && dook || doerror
-       # this is the end of script.
+       // this is the end of script.
        
-       """
 }
