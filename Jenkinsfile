@@ -28,22 +28,22 @@ def ping_test() {
     sh """
        doping () {
                  ping -c ftp.uadreams.com > /dev/null
-}
+        }
 
        dook () {
                 #what to do if ping ok?
                 echo "ping ok"
                 mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com ok :)'
-}
+       }
 
        doerror () {
                   # what to do if ping failed?
                   echo "error"
                   echo "$(date) ping failed!" >> /var/log/network-fail.log
                   mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com failed :('
-}
+       }
 
-       doping && dook || doerror
+       doping() && dook() || doerror()
        # this is the end of script.
        """
 }
