@@ -43,7 +43,7 @@ def ping_test() {
                   mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com failed :('
        }
 
-       doping() && dook() || doerror()
+       doping && dook || doerror
        # this is the end of script.
        """
 }
