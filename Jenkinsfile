@@ -11,17 +11,13 @@ pipeline {
     stages {
         stage('Example') {
             steps {
-                //echo "${params.Greeting} World!"
-                //k()
                 ping_test()
                 
             }
         }
     }
 }
-
-def k(){
-    println new Date()   
+ 
 }
 
 def ping_test() {
@@ -29,7 +25,7 @@ def ping_test() {
    
                 sh """  
 doping () {
-ping -c1 ftp.uadreams.com > /dev/null
+ping -c3 ftp.uadreams.com > /dev/null
 }
 
 dook () {
