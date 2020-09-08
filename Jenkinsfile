@@ -26,21 +26,25 @@ def k(){
 
 def ping_test() {
     
-   def doping () {
-               sh """  ping -c 3 ftp.uadreams.com > /dev/null"""
-        }
-      def  dook () {
-                //what to do if ping ok?
-               sh """ echo "ping ok" """
-                //mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com ok :)'
-       }
-       def doerror () {
-                  // what to do if ping failed?
-                sh """  echo "error" """
-               sh """   echo "$(date) ping failed!" >> /var/log/network-fail.log """
-                  //mail to: sergey-chasnyk@uadreams.com, subject: 'The ping ftp.uadreams.com failed :('
-       }
-       doping && dook || doerror
-       // this is the end of script.
+   
+                sh """  
+doping () {
+ping -c1 ftp.uadreams.com > /dev/null
+}
+
+dook () {
+#what to do if ping ok?
+echo "ping ok"
+}
+
+doerror () {
+# what to do if ping failed?
+echo "error"
+}
+
+doping && dook || doerror
+# this is the end of script.
+                """
+               
        
 }
