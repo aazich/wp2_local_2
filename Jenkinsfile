@@ -19,24 +19,18 @@ def ping_test() {
    
                 sh """  
 doping () {
-ping -c3 ftp.uadreams.com > /dev/null
+curl --max-time 3 -T test_file ftp://ftp.uadreams.com --user admin:Bj6fxgbB803jhZtu
 }
 
 dook () {
-#what to do if ping ok?
-echo "ping ftp.uadreams.com ok"
-curl --request 'POST' 'https://api.telegram.org/bot1003184229:AAF4OU035NoSesDxvBzWtS_5r2qNaBZbqCk/sendMessage?chat_id=491382846&text=ping ftp.uadreams.com ok'
+curl --request 'POST' 'https://api.telegram.org/bot1003184229:AAF4OU035NoSesDxvBzWtS_5r2qNaBZbqCk/sendMessage?chat_id=491382846&text=ftp.uadreams.com ok'
 }
 
 doerror () {
-# what to do if ping failed?
-echo "error"
-curl --request 'POST' 'https://api.telegram.org/bot1003184229:AAF4OU035NoSesDxvBzWtS_5r2qNaBZbqCk/sendMessage?chat_id=491382846&text=ping ftp.uadreams.com error'
+curl --request 'POST' 'https://api.telegram.org/bot1003184229:AAF4OU035NoSesDxvBzWtS_5r2qNaBZbqCk/sendMessage?chat_id=491382846&text=ftp.uadreams.com error'
 }
 
 doping && dook || doerror
 # this is the end of script.
                 """
-               
-       
 }
