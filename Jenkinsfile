@@ -19,7 +19,8 @@ def ping_test() {
    
                 sh """  
 doping () {
-curl --max-time 3 -T test_file ftp://ftp.uadreams.com --user admin:Bj6fxgbB803jhZtu
+curl -O ftp://ftp.uadreams.com/test_file --user admin:Bj6fxgbB803jhZtu
+#curl --max-time 3 -T test_file ftp://ftp.uadreams.com --user admin:Bj6fxgbB803jhZtu
 }
 
 dook () {
