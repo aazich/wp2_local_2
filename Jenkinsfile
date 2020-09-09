@@ -25,11 +25,13 @@ ping -c3 ftp.uadreams.com > /dev/null
 dook () {
 #what to do if ping ok?
 echo "ping ok"
+https://api.telegram.org/bot1003184229:AAF4OU035NoSesDxvBzWtS_5r2qNaBZbqCk/sendMessage?chat_id=491382846&text=ping ok
 }
 
 doerror () {
 # what to do if ping failed?
 echo "error"
+https://api.telegram.org/bot1003184229:AAF4OU035NoSesDxvBzWtS_5r2qNaBZbqCk/sendMessage?chat_id=491382846&text=ping error
 }
 
 doping && dook || doerror
