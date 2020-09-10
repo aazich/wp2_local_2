@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Example') {
             steps {
-                ping_test()
+                ftp_test()
                 
             }
         }
@@ -14,23 +14,23 @@ pipeline {
  
 }
 
-def ping_test() {
+def ftp_test() {
     
    
                 sh """  
-doping () {
-#curl -O ftp://ftp.server/test_file --user user:pass #first run with the command to copy a test file from the server, then comment out or delete the command. then use the command to write the file to ftp
-curl --max-time 3 -T test_file ftp://ftp.server --user user:pass
+dotest () {
+#curl -O ftp://ftp.server/test_file --user ${l_ftp}:${p_ftp} #first run with the command to copy a test file from the server, then comment out or delete the command. then use the command to write the file to ftp
+curl --max-time 3 -T test_file ftp://ftp.server --user ${l_ftp}:${p_ftp}
 }
 
 dook () {
-curl --request 'POST' 'https://api.telegram.org/bot<TOKEN>/sendMessage?chat_id=<chat_id>&text=ftp ok'
+curl --request 'POST' 'https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=ftp ok'
 }
 
 doerror () {
-curl --request 'POST' 'https://api.telegram.org/bot<TOKEN>/sendMessage?chat_id=<chat_id>&text=ftp error'
+curl --request 'POST' 'https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=ftp error'
 }
 
-doping && dook || doerror
+dotest && dook || doerror
 """
 }
