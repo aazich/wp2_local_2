@@ -19,8 +19,8 @@ def ftp_test() {
    
                 sh """  
 dotest () {
-#curl -O ftp://ftp.server/test_file --user ${l_ftp}:${p_ftp} #first run with the command to copy a test file from the server, then comment out or delete the command. then use the command to write the file to ftp
-curl --max-time 3 -T test_file ftp://ftp.server --user ${l_ftp}:${p_ftp}
+curl -O ftp://ftp.server/test_file --user ${l_ftp}:${p_ftp} #first run with the command to copy a test file from the server, then comment out or delete the command. then use the command to write the file to ftp
+#curl --max-time 3 -T test_file ftp://ftp.server --user ${l_ftp}:${p_ftp}
 }
 
 dook () {
