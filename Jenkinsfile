@@ -34,6 +34,7 @@ curl --max-time 3 -T test_file ftp://${SERVER} --user ${USERNAME}:${PASSWORD}
 }
 
 dook () {
+echo "ftp ok"
 #curl --request 'POST' 'https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=ftp ok ✅'
 }
 
