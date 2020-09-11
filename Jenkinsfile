@@ -1,8 +1,8 @@
 pipeline {
     
-     triggers {
-	    cron('''*/5 * * * *''')
-	  }
+     //triggers {
+	//    cron('''*/5 * * * *''')
+	  //}
     
     options {
 	    disableConcurrentBuilds()
