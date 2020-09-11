@@ -26,7 +26,7 @@ def ftp_test() {
                 sh """  
 dotest () {
 dd if=/dev/urandom of=test_file bs=1 count=1024 &> /dev/null
-curl --max-time 3 -T test_file ftp://${SERVER} --user ${USERNAME}:${PASSWORD}
+curl --max-time 3 -T test_file ftp://ftp.uadreams.com --user ${USERNAME}:${PASSWORD}
 }
 
 dook () {
