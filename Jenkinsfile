@@ -1,6 +1,13 @@
-#!/usr/bin/groovy
-
 pipeline {
+    
+     triggers {
+	    cron('''*/5 * * * *''')
+	  }
+    
+    options {
+	    disableConcurrentBuilds()
+	  }
+    
     agent any
     stages {
         stage('Example') {
@@ -16,21 +23,26 @@ pipeline {
 
 def ftp_test() {
     
-   
+   withCredentials([string(credentialsId: 'l_ftp', variable: 'USERNAME'), 
+                    string(credentialsId: 'p_ftp', variable: 'PASSWORD'), 
+                    string(credentialsId: 'ftp_server', variable: 'SERVER'), 
+                    string(credentialsId: 'token', variable: 'TOKEN'), 
+                    string(credentialsId: 'chat_id', variable: 'CHAT_ID')]){ 
                 sh """  
 dotest () {
-#curl -O ftp://${ftp_server}/test_file --user ${l_ftp}:${p_ftp}
-curl --max-time 3 -T test_file ftp://${ftp_server} --user ${l_ftp}:${p_ftp}
+dd if=/dev/urandom of=test_file bs=1 count=1024 &> /dev/null
+curl --max-time 3 -T test_file ftp://${SERVER} --user ${USERNAME}:${PASSWORD}
 }
 
 dook () {
-curl --request 'POST' 'https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=ftp ok ✅'
+curl --request 'POST' 'https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=ftp ok ✅'
 }
 
 doerror () {
-curl --request 'POST' 'https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=ftp error ❌'
+curl --request 'POST' 'https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=ftp error ❌'
 }
 
 dotest && dook || doerror
 """
+ }
 }
