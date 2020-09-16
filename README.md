@@ -1,2 +1,2 @@
-# wp2_local_2
+# wptest.com 
 docker conteyner for website
