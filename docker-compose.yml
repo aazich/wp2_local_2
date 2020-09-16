@@ -3,29 +3,29 @@ version: '2.1'
 services:
   mariadb:
     image: mariadb
-    container_name: 'wp2-mysql'
+    container_name: 'wptest-mysql'
     restart: always
     ports:
       - "3306:3306"
     volumes:
       - ./mariadb:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 123Qwe123
-      MYSQL_DATABASE: wp2
-      MYSQL_USER: wp2
-      MYSQL_PASSWORD: 123Qwe123
+      MYSQL_ROOT_PASSWORD: M9e6d3w8e5d2&
+      MYSQL_DATABASE: wpt
+      MYSQL_USER: wpt
+      MYSQL_PASSWORD: M9e6d3w8e5d2&
 
   php:
     build: ./images/php
-    container_name: 'wp2-php'
+    container_name: 'wptest-php'
     restart: always
     depends_on:
       - mariadb
     environment:
-      DB_HOST: wp2-mysql
-      DB_PASS: 123Qwe123
-      DB_NAME: wp2
-      DB_USER: wp2
+      DB_HOST: wptest-mysql
+      DB_PASS: M9e6d3w8e5d2&
+      DB_NAME: wpt
+      DB_USER: wpt
     links:
       - mariadb
     volumes:
@@ -33,7 +33,7 @@ services:
 
   nginx:
     image: nginx
-    container_name: 'wp2-nginx'
+    container_name: 'wptest-nginx'
     restart: always
     ports:
       - "80:80"
@@ -56,5 +56,5 @@ services:
     links:
       - mariadb:mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: 123Qwe123
+      MYSQL_ROOT_PASSWORD: M9e6d3w8e5d2&
       PMA_HOST: mariadb
