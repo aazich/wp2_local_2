@@ -10,10 +10,10 @@ services:
     volumes:
       - ./mariadb:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: M9e6d3w8e5d2&
+      MYSQL_ROOT_PASSWORD: 123Qwe123
       MYSQL_DATABASE: wpt
       MYSQL_USER: wpt
-      MYSQL_PASSWORD: M9e6d3w8e5d2&
+      MYSQL_PASSWORD: 123Qwe123
 
   php:
     build: ./images/php
@@ -23,7 +23,7 @@ services:
       - mariadb
     environment:
       DB_HOST: wptest-mysql
-      DB_PASS: M9e6d3w8e5d2&
+      DB_PASS: 123Qwe123
       DB_NAME: wpt
       DB_USER: wpt
     links:
@@ -50,11 +50,12 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: 'wptest-phpmyadmin'
     restart: always
     ports:
       - "8080:80"
     links:
       - mariadb:mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: M9e6d3w8e5d2&
+      MYSQL_ROOT_PASSWORD: 123Qwe123
       PMA_HOST: mariadb
