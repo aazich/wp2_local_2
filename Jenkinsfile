@@ -12,37 +12,39 @@ pipeline {
     stages {
         stage('Example') {
             steps {
-                ftp_test()
+                ftp2_test()
                 
             }
         }
     }
 
- 
+
+  post {
+	   success {
+	       echo "${env.BUILD_URL} has result success"
+	       withCredentials([string(credentialsId: 'token', variable: 'TOKEN'), string(credentialsId: 'chat_id', variable: 'CHAT_ID')]) {
+	             sh ("curl -s --header 'Content-Type: application/json' --request 'POST' --data '{\"chat_id\":\"${CHAT_ID}\",\"text\":\"success\n${env.BUILD_URL} has result success. ✅ \"}' 'https://api.telegram.org/bot${TOKEN}/sendMessage\'")
+	       }
+	   }
+	   failure {
+	       echo "${env.BUILD_URL} has result fail"
+	       withCredentials([string(credentialsId: 'token', variable: 'TOKEN'), string(credentialsId: 'chat_id', variable: 'CHAT_ID')]) {
+	             sh ("curl -s --header 'Content-Type: application/json' --request 'POST' --data '{\"chat_id\":\"${CHAT_ID}\",\"text\":\"fail\n${env.BUILD_URL} has result fail. ❌ \"}' 'https://api.telegram.org/bot${TOKEN}/sendMessage\'")
+	       }
+	   }
+	  }
 }
 
-def ftp_test() {
+def ftp2_test() {
 	withCredentials([string(credentialsId: 'l_ftp', variable: 'USERNAME'), 
 			 string(credentialsId: 'p_ftp', variable: 'PASSWORD'), 
 			 string(credentialsId: 'ftp_server', variable: 'SERVER'), 
 			 string(credentialsId: 'token', variable: 'TOKEN'), 
 			 string(credentialsId: 'chat_id', variable: 'CHAT_ID')]){ 
                 sh """  
-dotest () {
+
 dd if=/dev/urandom of=test_file bs=1 count=1024 &> /dev/null
 curl --max-time 3 -T test_file ftp://${SERVER} --user ${USERNAME}:${PASSWORD}
-}
-
-dook () {
-echo "ftp ok"
-curl --request 'POST' 'https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=ftp ok ✅'
-}
-
-doerror () {
-curl --request 'POST' 'https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=ftp error ❌'
-}
-
-dotest && dook || doerror
 """
  }
 }
